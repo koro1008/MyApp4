@@ -18,11 +18,19 @@ class PlayerMakingActivity : AppCompatActivity(){
 
     companion object {
         const val PLAYER_NAME = "playerName"
+        const val PLAYER_TYPE = "playerType"
         const val CONTACT = "contact_status"
         const val POWER = "power_status"
         const val SPEED = "speed_status"
         const val ARM = "arm_status"
         const val FIELDING = "fielding_status"
+
+        const val BALL_SPEED = "ballSpeed_status"
+        const val CONTROL = "control_status"
+        const val STAMINA = "stamina_status"
+        const val KIND_CHANGE = "kindsOfChangeBall_status"
+        const val AMOUNT_CHANGE = "amountOfChangeBall_status"
+        const val PRIORITY_CHANGE = "priorityOfChangeBall"
 
         const val CHANCE = "chance"
 
@@ -36,6 +44,7 @@ class PlayerMakingActivity : AppCompatActivity(){
     var currentName = current_A
 
     var playerName : String? = null
+    var playerType : String? = null
 
     private val fragmentA:QuestionOfAppearanceFragment = QuestionOfAppearanceFragment.newInstance()
     private val fragmentP:Fragment = QuestionOfPersonalityFragment.newInstance()
@@ -60,6 +69,7 @@ class PlayerMakingActivity : AppCompatActivity(){
         showHideFragment(current_A)
 
         playerName = intent.getStringExtra(PLAYER_NAME)
+        playerType = intent.getStringExtra(PLAYER_TYPE)
         sex_id = intent.getIntExtra(SelectPlayerTypeActivity.SEXID,-1)
 
     }
@@ -155,17 +165,31 @@ class PlayerMakingActivity : AppCompatActivity(){
                     spinner_q1_p.selectedItem as String,spinner_q2_p.selectedItem as String,spinner_q3_p.selectedItem as String,spinner_q4_p.selectedItem as String,spinner_q5_p.selectedItem as String,
                     spinner_q1_o.selectedItem as String,spinner_q2_o.selectedItem as String,spinner_q3_o.selectedItem as String,spinner_q4_o.selectedItem as String,spinner_q5_o.selectedItem as String)
 
-            val intent = Intent(this,MakingStatusActivity::class.java)
-            intent.putExtra(PLAYER_NAME,playerName)
-            intent.putExtra(CONTACT,calcAbility.contact)
-            intent.putExtra(POWER,calcAbility.power)
-            intent.putExtra(SPEED,calcAbility.speed)
-            intent.putExtra(ARM,calcAbility.armStrength)
-            intent.putExtra(FIELDING,calcAbility.fielding)
+            if (playerType.equals("fielder")) {
+                val intent = Intent(this,MakingStatusActivity::class.java)
+                intent.putExtra(PLAYER_NAME,playerName)
+                intent.putExtra(CONTACT,calcAbility.contact)
+                intent.putExtra(POWER,calcAbility.power)
+                intent.putExtra(SPEED,calcAbility.speed)
+                intent.putExtra(ARM,calcAbility.armStrength)
+                intent.putExtra(FIELDING,calcAbility.fielding)
 
-            intent.putExtra(CHANCE,calcAbility.chance)
+                intent.putExtra(CHANCE,calcAbility.chance)
 
-            startActivity(intent)
+                startActivity(intent)
+            } else {
+                val intent = Intent(this,MakingStatusPitcherActivity::class.java)
+                intent.putExtra(PLAYER_NAME,playerName)
+                intent.putExtra(BALL_SPEED,calcAbility.ballSpeed)
+                intent.putExtra(CONTROL,calcAbility.control)
+                intent.putExtra(STAMINA,calcAbility.stamina)
+                intent.putExtra(KIND_CHANGE,calcAbility.kindsOfChangeBall)
+                intent.putExtra(AMOUNT_CHANGE,calcAbility.amountOfCange)
+                intent.putExtra(PRIORITY_CHANGE,calcAbility.priorityOfChange)
+
+                startActivity(intent)
+            }
+            finish()
         }
         builder.setNegativeButton("いいえ",null)
         builder.show()
@@ -176,6 +200,8 @@ class PlayerMakingActivity : AppCompatActivity(){
         builder.setTitle("戻る")
         builder.setMessage("前の画面に戻りますか？")
         builder.setPositiveButton("はい") { dialog, which ->
+            val intent = Intent(this, SelectPlayerTypeActivity::class.java)
+            startActivity(intent)
             finish()
         }
         builder.setNegativeButton("キャンセル",null)

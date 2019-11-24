@@ -9,7 +9,7 @@
     <string name="fielder_making">野手でつくる</string>
     <string name="require_name">名前を登録してください</string>
     <string name="require_sex">性別を選んでください</string>
-    <string name="unable_pitcher" >※投手版は作成中です💦</string>
+    <string name="unable_pitcher">※投手版は作成中です💦</string>
     <string name="require_each_item">各項目を登録してください！</string>
 
     <string-array name="array_for_spinner">
@@ -32,6 +32,7 @@
         <item>ふつう</item>
         <item>スリム</item>
         <item>ぽっちゃり</item>
+        <item>ムッチリ</item>
         <item>ややマッチョ</item>
         <item>ゴリマッチョ</item>
     </string-array>
@@ -45,11 +46,12 @@
     </string-array>
 
     <string-array name="array_q4_a">
-        <item>優男</item>
-        <item>マジメ君</item>
-        <item>クール</item>
-        <item>おとぼけ</item>
-        <item>チャラ男</item>
+        <item>優しそう</item>
+        <item>明るそう</item>
+        <item>マジメそう</item>
+        <item>クールそう</item>
+        <item>おとぼけ者</item>
+        <item>チャラそう</item>
     </string-array>
 
     <string-array name="array_q5_a">
@@ -70,6 +72,7 @@
 
     <string-array name="array_q2_p">
         <item>優しい</item>
+        <item>頑張り屋さん</item>
         <item>気が強い</item>
         <item>無気力</item>
         <item>目立ちたがり</item>
@@ -94,6 +97,7 @@
 
     <string-array name="array_q5_p">
         <item>ふつう</item>
+        <item>天然</item>
         <item>冗談多め</item>
         <item>話が面白い</item>
         <item>つまらない</item>
@@ -133,13 +137,15 @@
     </string-array>
 
     <string-array name="array_q5_o">
+        <item>特になし</item>
         <item>カリスマ</item>
         <item>スポーツマン</item>
         <item>天才頭脳</item>
+        <item>酒豪</item>
+        <item>ヘビースモーカー</item>
         <item>元ヤン</item>
-        <item>特になし</item>
     </string-array>
-
+    <string name="title_activity_making_status_pitcher">MakingStatusPitcherActivity</string>
 
 
 </resources>
